@@ -2,7 +2,7 @@
 #zmodload zsh/zprof
 #start="$(date +%s%N)"
 
- Hide EOL sign (%) in shell
+# Hide EOL sign (%) in shell
 PROMPT_EOL_MARK=""
 
 # Don't consider certain characters part of the word
