@@ -1,0 +1,33 @@
+---
+- name: '-'
+  hosts: all
+  gather_facts: false
+  become_method: sudo
+
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+  vars_prompt:
+    - name: git_user
+      prompt: git username
+      private: false
+
+    - name: git_email
+      prompt: git email
+      private: false
+
+  pre_tasks:
+    - name: connect & retrieve env variables
+      ansible.builtin.setup:
+        gather_subset:
+          - '!all'
+          - '!min'
+          - 'env'
+
+  tasks:
+    - import_tasks: tasks/update.yml
+    - import_tasks: tasks/install.yml
+    - import_tasks: tasks/zsh.yml
+    - import_tasks: tasks/terminator.yml
+    - import_tasks: tasks/git.yml
+    - import_tasks: tasks/ssh_keypair.yml

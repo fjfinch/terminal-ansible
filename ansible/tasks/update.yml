@@ -1,0 +1,10 @@
+- name: 'UPDATE : apt packages'
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: safe
+    autoremove: true
+  become: true
+
+- name: 'UPDATE : pipx packages'
+  community.general.pipx:
+    state: upgrade_all

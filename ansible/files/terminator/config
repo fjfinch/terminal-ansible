@@ -1,0 +1,67 @@
+[global_config]
+  window_state = maximise
+  inactive_color_offset = 1.0
+  suppress_multiple_term_dialog = True
+[keybindings]
+  zoom_in = <Primary>equal
+  new_tab = ""
+  go_next = ""
+  go_prev = ""
+  go_up = ""
+  go_down = ""
+  go_left = ""
+  go_right = ""
+  rotate_cw = ""
+  rotate_ccw = ""
+  split_horiz = <Primary>a
+  split_vert = <Primary>q
+  close_term = <Primary>w
+  toggle_scrollbar = ""
+  close_window = ""
+  resize_up = <Alt>Up
+  resize_down = <Alt>Down
+  resize_left = <Alt>Left
+  resize_right = <Alt>Right
+  move_tab_right = ""
+  move_tab_left = ""
+  toggle_zoom = <Primary>e
+  scaled_zoom = ""
+  next_tab = ""
+  prev_tab = ""
+  full_screen = ""
+  hide_window = ""
+  group_all = ""
+  ungroup_all = ""
+  group_tab = ""
+  ungroup_tab = ""
+  new_window = ""
+  new_terminator = ""
+  insert_number = ""
+  insert_padded = ""
+  edit_window_title = ""
+  edit_tab_title = ""
+  edit_terminal_title = ""
+  layout_launcher = ""
+  preferences = <Primary>p
+  help = ""
+[profiles]
+  [[default]]
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = DejaVu Sans Mono 10
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scrollback_infinite = True
+    use_system_font = False
+    bold_is_bright = True
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+[plugins]

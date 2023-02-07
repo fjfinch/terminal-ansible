@@ -1,0 +1,5 @@
+- name: 'TERMINATOR : change config file'
+  ansible.builtin.copy:
+    src: 'files/terminator/config'
+    dest: '{{ ansible_env.HOME }}/.config/terminator/'
+    mode: 0644
