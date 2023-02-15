@@ -127,7 +127,7 @@ if [ -f /etc/zsh_command_not_found ]; then
 fi
 
 # Pipx variable path
-export PATH="$PATH:/home/${USER}/.local/bin"
+export PATH="${PATH}:/home/${USER}/.local/bin"
 
 # Aliases
 alias history='history 0'

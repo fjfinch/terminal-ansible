@@ -9,9 +9,11 @@
     repo: '{{ item.repo }}'
     dest: '{{ item.dest }}'
   loop:
-    - { repo: https://github.com/zsh-users/zsh-autosuggestions.git, dest: '{{ ansible_env.HOME }}/.zsh/zsh-autosuggestions' }
-    - { repo: https://github.com/zsh-users/zsh-syntax-highlighting.git, dest: '{{ ansible_env.HOME }}/.zsh/zsh-syntax-highlighting' }
-    - { repo: https://github.com/romkatv/gitstatus.git, dest: '{{ ansible_env.HOME }}/.zsh/gitstatus' }
+    - { repo: https://github.com/zsh-users/zsh-autosuggestions.git, dest: '{{ ansible_env.HOME }}{{ zsh_path }}/zsh-autosuggestions' }
+    - { repo: https://github.com/zsh-users/zsh-syntax-highlighting.git, dest: '{{ ansible_env.HOME }}{{ zsh_path }}/zsh-syntax-highlighting' }
+    - { repo: https://github.com/romkatv/gitstatus.git, dest: '{{ ansible_env.HOME }}{{ zsh_path }}/gitstatus' }
+  vars:
+    zsh_path: /.zsh
 
 - name: 'ZSH : change .zshrc file'
   ansible.builtin.copy:

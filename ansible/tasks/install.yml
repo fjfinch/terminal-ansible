@@ -2,8 +2,6 @@
   ansible.builtin.apt:
     name: '{{ item.name }}'
   loop:
-#    - { name: pipx }
-#    - { name: git }
     - { name: zsh }
     - { name: terminator }
   become: true
