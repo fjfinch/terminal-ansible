@@ -33,6 +33,7 @@ setopt interactivecomments		# allow comments in interactive mode
 setopt magicequalsubst			# enable filename expansion for arguments of the form ‘anything=expression’
 setopt glob_dots			# show hidden files in output & tab completion
 setopt promptsubst			# enable command substitution in prompt
+setopt hist_ignore_space		# ignore commands that start with space
 
 # Import git status functions
 if [ -f ~/.zsh/gitstatus/gitstatus.plugin.zsh ]; then
