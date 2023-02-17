@@ -1,4 +1,4 @@
-# PERFORMANCE CHECK
+# Performance check
 #zmodload zsh/zprof
 #start="$(date +%s%N)"
 
@@ -21,9 +21,9 @@ setopt INC_APPEND_HISTORY		# write commands immediately from memory to file
 setopt EXTENDED_HISTORY			# add timestamp of commands in file
 
 # Grey auto-suggestions based on history (and other) - zsh-autosuggestions
-#   is-at-least
-#   add-zsh-hook
-#   (anon)
+#    is-at-least
+#    add-zsh-hook
+#    (anon)
 if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
@@ -34,6 +34,7 @@ setopt magicequalsubst			# enable filename expansion for arguments of the form �
 setopt glob_dots			# show hidden files in output & tab completion
 setopt promptsubst			# enable command substitution in prompt
 
+# Import git status functions
 if [ -f ~/.zsh/gitstatus/gitstatus.plugin.zsh ]; then
     . ~/.zsh/gitstatus/gitstatus.plugin.zsh
 fi
@@ -41,6 +42,8 @@ fi
 # Update time & git status in prompt every second
 TMOUT=1
 TRAPALRM() {
+    emulate -L zsh
+
     #bracketed-paste
     if [[ "${WIDGET}" != "expand-or-complete" && "${WIDGET}" != '*zle-line-pre-redraw' ]]; then  # disable updating (blanking) interactive tapcompletion dropdown
         update_prompt
@@ -51,31 +54,27 @@ TRAPALRM() {
 # Colored prompt with prompt-expansion
 update_prompt() {
     emulate -L zsh
-    typeset -g  GITSTATUS_PROMPT=''
+    local GIT=''
 
-    gitstatus_query 'MY' || return 1
-    if [[ "${VCS_STATUS_RESULT}" == 'ok-sync' ]]; then
-
-        local p
-
-        p+="${VCS_STATUS_LOCAL_BRANCH}"
-        (( VCS_STATUS_COMMITS_BEHIND )) && p+=" ⇣${VCS_STATUS_COMMITS_BEHIND}"
-        (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && p+=" "
-        (( VCS_STATUS_COMMITS_AHEAD  )) && p+="⇡${VCS_STATUS_COMMITS_AHEAD}"
-        (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && p+=" ⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
-        (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && p+=" "
-        (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && p+="⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
-        (( VCS_STATUS_STASHES        )) && p+=" *${VCS_STATUS_STASHES}"
-        [[ -n $VCS_STATUS_ACTION     ]] && p+=" ${VCS_STATUS_ACTION}"
-        (( VCS_STATUS_NUM_CONFLICTED )) && p+=" !${VCS_STATUS_NUM_CONFLICTED}"
-        (( VCS_STATUS_NUM_STAGED     )) && p+=" %B+%b${VCS_STATUS_NUM_STAGED}"
-        (( VCS_STATUS_NUM_UNSTAGED   )) && p+=" %B~%b${VCS_STATUS_NUM_UNSTAGED}"
-        (( VCS_STATUS_NUM_UNTRACKED  )) && p+=" %B?%b${VCS_STATUS_NUM_UNTRACKED}"
-
-        GITSTATUS_PROMPT="(%b%F{208}${p}%b%F{242}) "
+    if gitstatus_query 'MY' && [[ "${VCS_STATUS_RESULT}" == 'ok-sync' ]]; then
+        GIT+="("
+        GIT+="%b%F{208}${VCS_STATUS_LOCAL_BRANCH}"
+        (( VCS_STATUS_COMMITS_BEHIND )) && GIT+=" ⇣${VCS_STATUS_COMMITS_BEHIND}"
+        (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && GIT+=" "
+        (( VCS_STATUS_COMMITS_AHEAD  )) && GIT+="⇡${VCS_STATUS_COMMITS_AHEAD}"
+        (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && GIT+=" ⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
+        (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && GIT+=" "
+        (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && GIT+="⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
+        (( VCS_STATUS_STASHES        )) && GIT+=" *${VCS_STATUS_STASHES}"
+        [[ -n $VCS_STATUS_ACTION     ]] && GIT+=" ${VCS_STATUS_ACTION}"
+        (( VCS_STATUS_NUM_CONFLICTED )) && GIT+=" !${VCS_STATUS_NUM_CONFLICTED}"
+        (( VCS_STATUS_NUM_STAGED     )) && GIT+=" %B+%b${VCS_STATUS_NUM_STAGED}"
+        (( VCS_STATUS_NUM_UNSTAGED   )) && GIT+=" %B~%b${VCS_STATUS_NUM_UNSTAGED}"
+        (( VCS_STATUS_NUM_UNTRACKED  )) && GIT+=" %B?%b${VCS_STATUS_NUM_UNTRACKED}"
+        GIT+="%b%F{242}) "
     fi
 
-    PROMPT="%b%F{242}[%*] %B%F{160}%~ %b%F{242}${GITSTATUS_PROMPT}> %b%f"
+    PROMPT="%b%F{242}[%*] %B%F{160}%~ %b%F{242}${GIT}> %b%f"
 }
 
 #    (anon)
@@ -87,6 +86,10 @@ gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
 precmd_functions+=(update_prompt)
 
 # Colored commands - zsh-syntax-highlighting
+#    _zsh_highlight_load_highlighters
+#    _zsh_highlight_bind_widgets
+#    is-at-least
+#    add-zsh-hook
 if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     . ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white,underline     # UNKNOWN COMMAND
