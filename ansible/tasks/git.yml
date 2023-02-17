@@ -20,4 +20,4 @@
     scope: local
     repo: .
     name: remote.origin.url
-    value: "git@github.com:{{output.config_value.split(':').1}}"
+    value: "{{ output.config_value | replace('https://github.com/','git@github.com:') }}"
