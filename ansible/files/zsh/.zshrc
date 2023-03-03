@@ -135,6 +135,7 @@ export PATH="${PATH}:/home/${USER}/.local/bin"
 
 # Aliases
 alias history='history 0'
+alias ll='ls -l'
 alias lla='ls -lA'
 alias thm='sudo openvpn ~/Finch.ovpn'
 
