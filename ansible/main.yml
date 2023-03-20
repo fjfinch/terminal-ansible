@@ -17,7 +17,7 @@
       private: false
 
   pre_tasks:
-    - name: connect & retrieve env variables
+    - name: 'connect & retrieve env variables'
       ansible.builtin.setup:
         gather_subset:
           - '!all'

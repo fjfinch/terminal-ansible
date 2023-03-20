@@ -21,10 +21,8 @@ git clone https://github.com/fjfinch/ansible-linux.git
 ```
 
 ## Run
-To run the playbook, go to the `ansible/` folder and run:
+Go to the `ansible/` folder and run:
 
 ```bash
-ansible-playbook main.yml -i inventory.ini -K
+ansible-playbook main.yml -K
 ```
-
-Add the `-C` flag to test the playbook without changing the VM.
