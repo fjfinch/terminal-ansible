@@ -1,5 +1,5 @@
 # ansible-linux
-An ansible project to setup some stuff on a system. Everything is set to be idempotent, and rerunning the playbook will also update all tools.
+An ansible project to configure stuff on a system. Everything is set to be idempotent, and rerunning the playbook will also update all tools.
 
 ## Install
 To use this repository, a couple of tools are required:
