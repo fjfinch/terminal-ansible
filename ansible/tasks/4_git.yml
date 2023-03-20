@@ -1,3 +1,4 @@
+---
 - name: 'GIT : change global settings'
   community.general.git_config:
     name: '{{ item.name }}'

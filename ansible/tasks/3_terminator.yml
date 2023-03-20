@@ -1,3 +1,4 @@
+---
 - name: 'TERMINATOR : change config file'
   ansible.builtin.copy:
     src: 'files/terminator/config'
