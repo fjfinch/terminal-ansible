@@ -25,9 +25,9 @@
           - 'env'
 
   tasks:
-    - import_tasks: tasks/update.yml
-    - import_tasks: tasks/install.yml
-    - import_tasks: tasks/zsh.yml
-    - import_tasks: tasks/terminator.yml
-    - import_tasks: tasks/git.yml
-    - import_tasks: tasks/ssh_keypair.yml
+    - import_tasks: tasks/0_update.yml
+    - import_tasks: tasks/1_install.yml
+    - import_tasks: tasks/2_zsh.yml
+    - import_tasks: tasks/3_terminator.yml
+    - import_tasks: tasks/4_git.yml
+    - import_tasks: tasks/5_ssh_keypair.yml
