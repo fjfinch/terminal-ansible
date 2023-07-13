@@ -1,4 +1,9 @@
 ---
+- name: 'TERMINATOR : install terminator'
+  ansible.builtin.apt:
+    name: terminator
+  become: true
+
 - name: 'TERMINATOR : change config file'
   ansible.builtin.copy:
     src: 'files/terminator/config'

@@ -26,8 +26,7 @@
 
   tasks:
     - import_tasks: tasks/0_update.yml
-    - import_tasks: tasks/1_install.yml
-    - import_tasks: tasks/2_zsh.yml
-    - import_tasks: tasks/3_terminator.yml
-    - import_tasks: tasks/4_git.yml
-    - import_tasks: tasks/5_ssh_keypair.yml
+    - import_tasks: tasks/1_zsh.yml
+    - import_tasks: tasks/2_terminator.yml
+    - import_tasks: tasks/3_git.yml
+    - import_tasks: tasks/4_ssh_keypair.yml
