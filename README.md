@@ -1,4 +1,4 @@
-# ansible-linux
+# linux-setup-ansible
 An ansible project to configure stuff on a system. Everything is set to be idempotent, and rerunning the playbook will also update all tools.
 
 ## Install
@@ -17,7 +17,7 @@ sudo apt update && sudo apt install -y git pipx && pipx install ansible --includ
 Next, clone this repository:
 
 ```bash
-git clone https://github.com/fjfinch/ansible-linux.git
+git clone https://github.com/fjfinch/linux-setup-ansible.git
 ```
 
 ## Run
