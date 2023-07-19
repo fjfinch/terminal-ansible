@@ -138,6 +138,7 @@ alias history='history 0'
 alias ll='ls -l'
 alias lla='ls -lA'
 alias thm='sudo openvpn ~/Finch.ovpn'
+alias origin_ssh='git remote set-url origin "$(git remote get-url origin | sed "s|https://github.com/|git@github.com:|g")"'
 
 # END PERFORMACE CHECK
 #end="$(date +%s%N)"
