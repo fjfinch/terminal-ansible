@@ -24,8 +24,11 @@
           - '!min'
           - 'env'
 
+  roles:
+    - GITHUB.UPDATE.ROLE
+    - GITHUB.LINTING.ROLE
+
   tasks:
-    - import_tasks: tasks/0_update.yml
     - import_tasks: tasks/1_zsh.yml
     - import_tasks: tasks/2_terminator.yml
     - import_tasks: tasks/3_git.yml
