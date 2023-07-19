@@ -1,5 +1,5 @@
 # terminal-ansible
-An ansible project to configure stuff on a system. Everything is set to be idempotent, and rerunning the playbook will also update all tools.
+Ansible playbook to configure a terminal (terminator + zsh + custom .zshrc).
 
 ## Install & setup
 To use Ansible, a couple of tools are required:
