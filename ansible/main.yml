@@ -7,15 +7,6 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3
 
-  vars_prompt:
-    - name: git_user
-      prompt: git username
-      private: false
-
-    - name: git_email
-      prompt: git email
-      private: false
-
   pre_tasks:
     - name: 'connect & retrieve env variables'
       ansible.builtin.setup:
@@ -31,5 +22,3 @@
   tasks:
     - import_tasks: tasks/1_zsh.yml
     - import_tasks: tasks/2_terminator.yml
-    - import_tasks: tasks/3_git.yml
-    - import_tasks: tasks/4_ssh_keypair.yml

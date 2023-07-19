@@ -1,7 +1,0 @@
----
-- name: 'SSH : create keypair'
-  ansible.builtin.user:
-    name: '{{ ansible_env.USER }}'
-    generate_ssh_key: true
-    ssh_key_comment: ""
-  become: true
