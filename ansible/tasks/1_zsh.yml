@@ -25,4 +25,4 @@
   ansible.builtin.copy:
     src: 'files/zsh/.zshrc'
     dest: '{{ ansible_env.HOME }}/'
-    mode: 0644
+    mode: '0644'
