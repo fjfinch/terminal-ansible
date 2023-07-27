@@ -46,7 +46,8 @@ TRAPALRM() {
     emulate -L zsh
 
     #bracketed-paste
-    if [[ "${WIDGET}" != "expand-or-complete" && "${WIDGET}" != '*zle-line-pre-redraw' ]]; then  # disable updating (blanking) interactive tapcompletion dropdown
+    #*zle-line-pre-redraw
+    if [[ "${WIDGET}" != "expand-or-complete" && "${WIDGET}" != ".history-incremental-search-backward" ]]; then  # disable disappearing interactive tapcompletion dropdown bc trapalrm
         update_prompt
         zle reset-prompt
     fi
@@ -76,6 +77,7 @@ update_prompt() {
     fi
 
     PROMPT="%b%F{242}[%*] %B%F{160}%~ %b%F{242}${GIT}> %b%f"
+    RPROMPT="${WIDGET}"
 }
 
 #    (anon)
