@@ -1,4 +1,5 @@
 ---
 collections:
+  - name: community.general
   - name: git+https://github.com/fjfinch/ansible-namespace.git#/UPDATE
   - name: git+https://github.com/fjfinch/ansible-namespace.git#/LINTING
