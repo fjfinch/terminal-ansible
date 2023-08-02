@@ -13,6 +13,13 @@ bindkey '^[[3;5~' kill-word		# ctrl + del (remove word right)
 bindkey '^[[1;5C' forward-word		# ctrl + -> (go word right)
 bindkey '^[[1;5D' backward-word		# ctrl + <- (go word left)
 
+# Specifying zsh options
+setopt interactivecomments              # allow comments in interactive mode
+setopt magicequalsubst                  # enable filename expansion for arguments of the form ‘anything=expression’
+setopt glob_dots                        # show hidden files in output & tab completion
+setopt promptsubst                      # enable command substitution in prompt
+setopt hist_ignore_space                # ignore commands that start with space
+
 # History configurations
 HISTFILE=~/.zsh_history			# path/location of the history file
 HISTSIZE=5000				# number of commands that are in memory
@@ -27,13 +34,6 @@ setopt EXTENDED_HISTORY			# add timestamp of commands in file
 if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
-
-# Specifying zsh options
-setopt interactivecomments		# allow comments in interactive mode
-setopt magicequalsubst			# enable filename expansion for arguments of the form ‘anything=expression’
-setopt glob_dots			# show hidden files in output & tab completion
-setopt promptsubst			# enable command substitution in prompt
-setopt hist_ignore_space		# ignore commands that start with space
 
 # Import git status functions
 if [ -f ~/.zsh/gitstatus/gitstatus.plugin.zsh ]; then
@@ -59,8 +59,8 @@ update_prompt() {
     local GIT=''
 
     if gitstatus_query 'MY' && [[ "${VCS_STATUS_RESULT}" == 'ok-sync' ]]; then
-        GIT+="("
-        GIT+="%b%F{208}${VCS_STATUS_LOCAL_BRANCH}"
+        GIT+="%b%F{242}("
+        GIT+="%b%F{202}${VCS_STATUS_LOCAL_BRANCH}"
         (( VCS_STATUS_COMMITS_BEHIND )) && GIT+=" ⇣${VCS_STATUS_COMMITS_BEHIND}"
         (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && GIT+=" "
         (( VCS_STATUS_COMMITS_AHEAD  )) && GIT+="⇡${VCS_STATUS_COMMITS_AHEAD}"
@@ -76,7 +76,7 @@ update_prompt() {
         GIT+="%b%F{242}) "
     fi
 
-    PROMPT="%b%F{242}[%*] %B%F{160}%~ %b%F{242}${GIT}> %b%f"
+    PROMPT="%b%F{242}[%*] %B%F{red}%~ ${GIT}> %b%f"
     RPROMPT="${WIDGET}"
 }
 
@@ -95,7 +95,7 @@ precmd_functions+=(update_prompt)
 #    add-zsh-hook
 if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     . ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white,underline     # UNKNOWN COMMAND
+    ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=white               # UNKNOWN COMMAND
     ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=cyan         # command -option
     ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=cyan         # command --option
 fi
@@ -132,15 +132,15 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
-# Pipx variable path
-export PATH="${PATH}:/home/${USER}/.local/bin"
-
 # Aliases
 alias history='history 0'
 alias ll='ls -l'
 alias lla='ls -lA'
 alias thm='sudo openvpn ~/Finch.ovpn'
 alias origin_ssh='git remote set-url origin "$(git remote get-url origin | sed "s|https://github.com/|git@github.com:|g")"'
+
+# Pipx variable path
+export PATH="${PATH}:/home/${USER}/.local/bin"
 
 # END PERFORMACE CHECK
 #end="$(date +%s%N)"

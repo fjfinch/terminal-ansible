@@ -46,16 +46,17 @@
   help = ""
 [profiles]
   [[default]]
-    background_darkness = 0.9
+    background_color = "#0f0f12"
+    background_darkness = 0.95
     background_type = transparent
-    cursor_color = "#aaaaaa"
     font = DejaVu Sans Mono 10
     foreground_color = "#ffffff"
+#    palette = "#0f0c0c:#9e120a:#db2709:#f1570e:#c45b49:#aa8c5a:#64748d:#b2bbc4:#7c8289:#9e120a:#db2709:#f1570e:#c45b49:#aa8c5a:#64748d:#b2bbc4"
+#    palette = "#18262F:#EF5253:#7CC844:#E4B51C:#33B5E1:#A363D5:#52CBB0:#A6AFB8:#667581:#EF5253:#7CC844:#E4B51C:#33B5E1:#A363D5:#52CBB0:#F5F7FA"
     show_titlebar = False
     scrollbar_position = hidden
     scrollback_infinite = True
     use_system_font = False
-    bold_is_bright = True
 [layouts]
   [[default]]
     [[[window0]]]
