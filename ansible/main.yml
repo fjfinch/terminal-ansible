@@ -4,20 +4,14 @@
   gather_facts: false
   become_method: sudo
 
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
-
   pre_tasks:
-    - name: 'connect & retrieve env variables'
+    - name: 'connect to host & retrieve min facts'
       ansible.builtin.setup:
         gather_subset:
           - '!all'
-          - '!min'
-          - 'env'
 
   roles:
     - GITHUB.UPDATE.ROLE
-    - GITHUB.LINTING.ROLE
 
   tasks:
     - import_tasks: tasks/1_zsh.yml
