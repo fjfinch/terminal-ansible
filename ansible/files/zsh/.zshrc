@@ -59,8 +59,8 @@ update_prompt() {
     local GIT=''
 
     if gitstatus_query 'MY' && [[ "${VCS_STATUS_RESULT}" == 'ok-sync' ]]; then
-        GIT+="%b%F{242}("
-        GIT+="%b%F{202}${VCS_STATUS_LOCAL_BRANCH}"
+        GIT+="%b%F{240}("
+        GIT+="%b%F{242}${VCS_STATUS_LOCAL_BRANCH}"
         (( VCS_STATUS_COMMITS_BEHIND )) && GIT+=" ⇣${VCS_STATUS_COMMITS_BEHIND}"
         (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && GIT+=" "
         (( VCS_STATUS_COMMITS_AHEAD  )) && GIT+="⇡${VCS_STATUS_COMMITS_AHEAD}"
@@ -70,14 +70,14 @@ update_prompt() {
         (( VCS_STATUS_STASHES        )) && GIT+=" *${VCS_STATUS_STASHES}"
         [[ -n $VCS_STATUS_ACTION     ]] && GIT+=" ${VCS_STATUS_ACTION}"
         (( VCS_STATUS_NUM_CONFLICTED )) && GIT+=" !${VCS_STATUS_NUM_CONFLICTED}"
-        (( VCS_STATUS_NUM_STAGED     )) && GIT+=" %B+%b${VCS_STATUS_NUM_STAGED}"
-        (( VCS_STATUS_NUM_UNSTAGED   )) && GIT+=" %B~%b${VCS_STATUS_NUM_UNSTAGED}"
-        (( VCS_STATUS_NUM_UNTRACKED  )) && GIT+=" %B?%b${VCS_STATUS_NUM_UNTRACKED}"
-        GIT+="%b%F{242}) "
+        (( VCS_STATUS_NUM_STAGED     )) && GIT+=" +${VCS_STATUS_NUM_STAGED}"
+        (( VCS_STATUS_NUM_UNSTAGED   )) && GIT+=" ~${VCS_STATUS_NUM_UNSTAGED}"
+        (( VCS_STATUS_NUM_UNTRACKED  )) && GIT+=" ?${VCS_STATUS_NUM_UNTRACKED}"
+        GIT+="%b%F{240}) "
     fi
 
-    PROMPT="%b%F{242}[%*] %B%F{red}%~ ${GIT}> %b%f"
-    RPROMPT="${WIDGET}"
+    PROMPT="%b%F{240}[%*] %B%F{160}%~ ${GIT}>%b%f "
+#    RPROMPT="${WIDGET}"
 }
 
 #    (anon)
