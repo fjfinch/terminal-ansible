@@ -5,7 +5,7 @@
   become_method: sudo
 
   pre_tasks:
-    - name: 'connect to host & retrieve min facts'
+    - name: 'Connect to host & retrieve min facts'
       ansible.builtin.setup:
         gather_subset:
           - '!all'
