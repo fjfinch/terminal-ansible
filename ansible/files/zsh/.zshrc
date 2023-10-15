@@ -60,7 +60,7 @@ update_prompt() {
 
     if gitstatus_query 'MY' && [[ "${VCS_STATUS_RESULT}" == 'ok-sync' ]]; then
         GIT+="%b%F{240}("
-        GIT+="%b%F{242}${VCS_STATUS_LOCAL_BRANCH}"
+        GIT+="%b%F{245}${VCS_STATUS_LOCAL_BRANCH}"
         (( VCS_STATUS_COMMITS_BEHIND )) && GIT+=" ⇣${VCS_STATUS_COMMITS_BEHIND}"
         (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && GIT+=" "
         (( VCS_STATUS_COMMITS_AHEAD  )) && GIT+="⇡${VCS_STATUS_COMMITS_AHEAD}"
