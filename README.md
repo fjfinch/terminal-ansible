@@ -18,8 +18,6 @@ sudo apt update && sudo apt install -y git pipx && pipx install ansible --includ
 git clone https://github.com/fjfinch/terminal-ansible.git
 ```
 
-Go to the `ansible/` folder:
-
 3 - Pull required roles:
 ```bash
 ansible-galaxy collection install -r requirements.yml
