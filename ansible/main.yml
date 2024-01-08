@@ -11,7 +11,7 @@
           - '!all'
 
   roles:
-    - GITHUB.UPDATE.ROLE
+    - role: GITHUB.UPDATE.ROLE
 
   tasks:
     - import_tasks: tasks/1_zsh.yml
