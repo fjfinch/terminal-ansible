@@ -76,7 +76,7 @@ update_prompt() {
         GIT+="%b%F{240}) "
     fi
 
-    PROMPT="%b%F{240}[%*] %B%F{160}%~ ${GIT}%b%F{240}>%b%f "
+    PROMPT="%b%F{240}[%*] [$(hostname)] %B%F{160}%~ ${GIT}%b%F{240}>%b%f "
 #    RPROMPT="${WIDGET}"
 }
 
